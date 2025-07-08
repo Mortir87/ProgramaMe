@@ -1,0 +1,65 @@
+/*
+* Programame 2011 Madrid
+* De nuevo en el Bar de Javier ( Ventas 2) 
+*/
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        float d = 0;
+        float a = 0;
+        float m = 0;
+        float i = 0;
+        float c = 0;
+        boolean salida = false;
+        do {
+            String cat = sc.next();
+            float venta = sc.nextFloat();
+
+            if (cat.equals("D")) d += venta;
+            else if (cat.equals("A")) a += venta;
+            else if (cat.equals("M")) m += venta;
+            else if (cat.equals("I")) i += venta;
+            else if (cat.equals("C")) c += venta;
+            else {
+                float max = Math.max(d, Math.max(a, Math.max(m, Math.max(i, c))));
+                float min = Math.min(d, Math.min(a, Math.min(m, Math.min(i, c))));
+
+                String maxCat = categoriasMax(d, a, m, i, c, max);
+                String minCat = categoriasMin(d, a, m, i, c, min);
+
+                float media = (d + a + m + i + c) / 5;
+                String supera = a > media ? "SI" : "NO";
+
+                System.out.println(maxCat + "#" + minCat + "#" + supera);
+
+                d = a = m = i = c = 0;
+                
+                if (cat.equals("E")) salida = true;
+            }
+        } while (!salida && sc.hasNext());
+    }
+
+    private static String categoriasMax(float d, float a, float m, float i, float c, float max) {
+        int count = 0;
+        String res = "";
+        if (d == max) { res = "DESAYUNOS"; count++; }
+        if (a == max) { res = "COMIDAS"; count = (count == 0) ? 1 : 2; }
+        if (m == max) { res = "MERIENDAS"; count = (count == 0) ? 1 : 2; }
+        if (i == max) { res = "CENAS"; count = (count == 0) ? 1 : 2; }
+        if (c == max) { res = "COPAS"; count = (count == 0) ? 1 : 2; }
+        return count > 1 ? "EMPATE" : res;
+    }
+
+    private static String categoriasMin(float d, float a, float m, float i, float c, float min) {
+        int count = 0;
+        String res = "";
+        if (d == min) { res = "DESAYUNOS"; count++; }
+        if (a == min) { res = "COMIDAS"; count = (count == 0) ? 1 : 2; }
+        if (m == min) { res = "MERIENDAS"; count = (count == 0) ? 1 : 2; }
+        if (i == min) { res = "CENAS"; count = (count == 0) ? 1 : 2; }
+        if (c == min) { res = "COPAS"; count = (count == 0) ? 1 : 2; }
+        return count > 1 ? "EMPATE" : res;
+    }
+}
