@@ -1,0 +1,43 @@
+/*
+* Madrid 2011 - G. Radares de tramo
+*/
+
+import java.util.Scanner;
+public class Main {
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+
+	    int dist, vel, t; //declaramos las variables.
+	    boolean condicion = true;
+
+	    while (condicion) { //pedimos datos e iniciamos while
+		    System.out.print("Distancia en metros: ");
+		    dist = sc.nextInt();
+		    System.out.print("Velocidad maxima: ");
+		    vel = sc.nextInt();
+		    System.out.print("Tiempo que ha tardado en segundos: ");
+		    t = sc.nextInt();
+		    
+		    if (dist == 0 && vel == 0 && t == 0){ //añadimos if para poder salir.
+		        condicion = false;
+		        
+		    } else if (dist <=0 || vel <=0 || t <=0)  { //comprobamos que los datos son mayores que 0 para no generar errores
+		            System.out.println("ERROR");
+		            
+		    } else {
+    		    int velMax = (vel*1000) /3600; //velocidad maxima en m/s para usar enteros.
+    		    int velMed = (dist / t ); //velocidad media en m/s
+    		    int exceso = (velMax*120) / 100; //exceso de velocidad usando enteros
+    		    
+    		    if (velMed >= exceso) {
+    		        System.out.println("PUNTOS");
+    		        
+    		    } else if ((dist * 3600) > (vel * t * 1000)) { 
+    		    
+    		        System.out.println("MULTA");
+    		    } else {
+    		        System.out.println("OK");
+    		 }
+	     }
+    }
+}	
