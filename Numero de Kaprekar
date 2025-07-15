@@ -1,0 +1,44 @@
+/*
+* 2011 Madrid - Ejercicio J
+* Numero de Kaprekar
+*/
+
+import java.util.Arrays;
+import java.util.Scanner;
+public class Main
+{
+    private static int siguienteKaprekar(int n) {
+        int[] v = {n/1000,(n/100)%10,(n/10)%10,n%10};
+        int mayor, menor;      
+        Arrays.sort(v);
+        menor = 1000*v[0] + 100*v[1] + 10*v[2] + v[3];
+        mayor = 1000*v[3] + 100*v[2] + 10*v[1] + v[0];
+    return mayor - menor;
+    }
+
+    private static int kaprekar (int n) {
+        final int k = 6174; //la generamos como costante
+        int pasos;         
+        if (n% 1111 == 0){ 
+            pasos = 8;
+        } else {
+            pasos = 0;
+            while ( n != k && pasos < 10) {
+                pasos++;
+                n = siguienteKaprekar(n);
+            }
+        }
+        return pasos;
+    }
+
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    int nCasos;
+	    nCasos = sc.nextInt();
+	    for (int i= 0; i < nCasos; i++){
+	        int n = sc.nextInt();
+	        System.out.println(kaprekar(n));
+	    }
+	}
+}
+
