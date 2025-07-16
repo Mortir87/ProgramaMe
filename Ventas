@@ -1,0 +1,48 @@
+/*
+* 2011 Prueba Online - Ejercicio F
+* Ventas
+*/
+
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    String[] diaSemana = {"MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO", "DOMINGO"};
+	    
+	    //System.out.println("Dime los importes de la semana: ")
+	   float[] ventas = new float[6];
+	   do {
+	        int diaMax = 0;
+            int diaMin = 0;
+            float media;
+            String domingoMayor;
+            
+            ventas[0] = sc.nextFloat();
+            if (ventas[0] != -1 ) {
+                for (int i = 1; i < 6; i++) {
+                    ventas[i] = sc.nextFloat();
+                }
+    
+                for (int i = 1; i < 6; i++) {
+                    if (ventas[i] > ventas[diaMax]) {
+                        diaMax = i;
+                    }
+                    if (ventas[i] < ventas[diaMin]) {
+                        diaMin = i;
+                    }
+                }
+                
+                media = (ventas[0] + ventas[1] + ventas[2] + ventas[3] + ventas[4] + ventas[5]) / 6;
+    
+                if (ventas[5] > media){
+                    domingoMayor = "SI";   
+                } else {
+                    domingoMayor = "NO";
+                }
+                System.out.println(diaSemana[diaMax] + "\t" + diaSemana[diaMin] + "\t" + domingoMayor);
+            }  
+	    }while (ventas[0] != -1);
+    }
+}
+	
