@@ -1,0 +1,34 @@
+/*
+* 2013 Madrid y Reus - D - Triangulos con piedras
+*/
+
+import java.util.Scanner;
+
+public class Main {
+    public static void calcularTriangulo(int nPiedras) {
+        int pGastadas = 0;
+        int i = 1;
+
+        while (pGastadas + i <= nPiedras) {
+            pGastadas += i;
+            i++;
+        }
+
+        int sobrante = nPiedras - pGastadas;
+        System.out.println((i - 1) + " " + sobrante);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int nPiedras;
+
+        do {
+            //System.out.print("Dime el numero de piedras: ");
+            nPiedras = sc.nextInt();
+          
+            if (nPiedras > 0 ) {
+                 calcularTriangulo(nPiedras);
+            }
+        } while (nPiedras > 0 && nPiedras < 250000000);
+    }
+}
