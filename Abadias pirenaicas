@@ -1,0 +1,42 @@
+/*
+* 2013 Madrid y Reus- Ejercicio D
+* Abadias pirenaicas
+*/
+import java.util.Scanner;
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int nMontañas;
+        do {
+            System.out.print(Escribe el numero de montañas de la cordillera );
+            nMontañas = sc.nextInt();
+            if (nMontañas != 0) {
+                int[] alturas = leerAlturas(sc, nMontañas);
+                int contador = contarMontañasVisibles(alturas);
+                System.out.println(contador);
+            }
+        } while (nMontañas  0 && nMontañas  20000);
+    }
+
+    public static int[] leerAlturas(Scanner sc, int nMontañas) {
+        int[] alturas = new int[nMontañas];
+        for (int i = 0; i  nMontañas; i++) {
+            System.out.print(Dime la altura de la montaña numero  + (i+1)+ );
+            alturas[i] = sc.nextInt();
+        }
+        return alturas;
+    }
+
+    public static int contarMontañasVisibles(int[] alturas) {
+        int contador = 0;
+        int alturaMax = 0;
+        for (int i = alturas.length - 1; i = 0; i--) {
+            if (alturas[i]  alturaMax) {
+                contador++;
+                alturaMax = alturas[i];
+            }
+        }
+        return contador;
+    }
+}
